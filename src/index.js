@@ -3,31 +3,31 @@ document.addEventListener("DOMContentLoaded",function(){
   const toDoTask = document.querySelector("#new-task-description");
   const toDoForm = document.querySelector('#create-task-form');
   const newTaskUL = document.querySelector("#tasks");
-  //console.log(toDoTask); to confirm we have captured new task description
- // console.log(toDoForm); to confirm we have captured new task form
- // console.log(newTaskUl); to confirm we have targeted the tasks ul, which we wil add new tasks to it
-
-toDoForm.addEventListener("submit",createNewTask);
+  //we have grabbed the necessaryelements for us to edit
+  //check on them by console.log(name);
+ toDoForm.addEventListener("submit",createNewTask);
+ //we add the event listener to the toDoForm because the whole form has the id of #create-task-form.
+ //so even when we press the  new task icon, the button, which performs a submit event will trigger a function of 
+ //creatng a new task
 });
 
-const createNewTask = function(event){
+function createNewTask(event){
   event.preventDefault();
   const toDoTask = document.querySelector("#new-task-description");
-  const newTask = document.createElement("li");
-  newTask.textContent = toDoTask.value;
+  const newTask = document.createElement("p");//=> creates element where i store in my data/tasks
+  const btn = document.createElement('button')
+  btn.textContent = 'X'
+  btn.className = ("cross");
+  newTask.appendChild(btn);
+  newTask.innerHTML = toDoTask.value; //=> makes sure the string passed to the <li> will be the same as the value field with an id of #new-task-description"
 
-  appendNewTask(newTask);
-  event.target.reset();
+  appendTask(newTask); //=> makes the <li> a parent of the <ul> with an id of #tasks 
+  event.target.reset(); //=> makes sure the value we put in doesnt remain logged into the toDoTask section;
 };
 
-const appendNewTask = function(task){
-  document.getElementById("tasks").appendChild(task);
+function appendTask(task){
+  document.querySelector("#tasks").appendChild(task); //=> function that makes any element passed in the <ul> identified by #tasks be a child node to it.
 };
-
-const editDiv = document.getElementById("main-content");
-
-editDiv.style.background = "grey";
-editDiv.style.height = "200 px";
 
 const editBody = document.querySelector("body");
 
@@ -37,6 +37,11 @@ const editHeading = document.querySelector("h1");
 editHeading.innerHTML = "Maina's Task App";
 
 const editToDoList = document.getElementById("list")
+
+
+
+
+
 
 
 
